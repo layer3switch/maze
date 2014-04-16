@@ -26,10 +26,10 @@ def main():
         sys.exit(0)
 
     ioflo.app.run.run(  name=args.name,
-                        filename = args.filename,
+                        filepath = args.filename,
                         period = float(args.period),
                         verbose = args.verbose,
-                        realtime = args.realtime,
+                        real = args.realtime,
                         behaviors=args.behaviors,
                         username=args.username,
                         password=args.password, )

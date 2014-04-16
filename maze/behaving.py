@@ -33,7 +33,7 @@ OFFSETS = odict([
                 ('west', (0, -1))
                 ])
 
-class CommanderMaze(deeding.Deed):
+class MazeCommander(deeding.Deed):
     '''
     Manages commander
     '''
@@ -65,7 +65,7 @@ class CommanderMaze(deeding.Deed):
             print "Got: {0}\n".format(command)
 
 
-@deeding.deedify('mazeCommanderClose', ioinits=odict(
+@deeding.deedify('MazeCommanderClose', ioinits=odict(
             inode=".maze.commander",
             server="server",))
 def commanderclose(self):
@@ -77,7 +77,7 @@ def commanderclose(self):
         server.close()
 
 
-class ConsolerMaze(deeding.Deed):
+class MazeConsoler(deeding.Deed):
     '''
     Manages command console
     '''
@@ -129,7 +129,7 @@ class ConsolerMaze(deeding.Deed):
 
 
 
-@deeding.deedify('mazeConsolerClose', ioinits=odict(
+@deeding.deedify('MazeConsolerClose', ioinits=odict(
            inode=".maze.consoler",
             console="console",
             server="server", ))
@@ -145,7 +145,7 @@ def consolerclose(self):
 
 
 
-@deeding.deedify('mazeStart', ioinits=odict(
+@deeding.deedify('MazeStart', ioinits=odict(
                 inode=".maze.",
                 onset=odict(ipath="onset", ival=odict(north=0.0, east=0.0)),
                 pose=odict(ipath="pose", ival='north'),
@@ -248,7 +248,7 @@ class Cell(deeding.Deed):
                 self.speed.value )
 
 
-class WestNorthCorner(Cell):
+class CornerNorthWest(Cell):
     '''
     Manages cell corner on north west
     '''
