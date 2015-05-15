@@ -43,7 +43,7 @@ class MazeCommander(deeding.Deed):
             commands=odict(ipath=".maze.commands", ival=deque()),
             )
 
-    def postinitio(self):
+    def _prepare(self):
         '''
         Post process ioinits
         '''
@@ -87,7 +87,7 @@ class MazeConsoler(deeding.Deed):
             server="server",
             )
 
-    def postinitio(self):
+    def _prepare(self):
         '''
         Post process ioinits
         '''
@@ -292,7 +292,7 @@ class Corridor(deeding.Deed):
             position=odict(ipath=".maze.player.position", ival=odict(north=0.0, east=0.0)),
             )
 
-    def postinitio(self):
+    def _prepare(self):
         '''
         Post process ioinits
         '''
