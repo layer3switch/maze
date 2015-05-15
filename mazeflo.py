@@ -8,7 +8,7 @@ Runs ioflo plan from command line shell
 
 example:
 
-mazeflo -v verbose -n maze -p 0.0625 -f maze/maze.flo -b maze
+mazeflo.py -v verbose -n maze -p 0.0625 -r -f maze/maze.flo -b maze
 
 
 """
@@ -17,11 +17,7 @@ import ioflo.app.run
 
 def main():
     """ Main entry point for ioflo CLI"""
-    args = ioflo.app.run.parseArgs()
-
-    if args.version:
-        print "ioflo version {0}".format(ioflo.__version__)
-        sys.exit(0)
+    args = ioflo.app.run.parseArgs(version=0.1)
 
     ioflo.app.run.run(  name=args.name,
                         filepath = args.filename,

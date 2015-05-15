@@ -91,7 +91,7 @@ class MazeConsoler(deeding.Deed):
         '''
         Post process ioinits
         '''
-        self.console.value = aiding.ConsoleNB()
+        self.console.value = aiding.ConsoleNb()
         self.console.value.open() # open console port
         self.server.value = aiding.SocketUdpNb(host = '', port = 55001, bufsize = 1024)
         self.server.value.reopen()
@@ -102,26 +102,34 @@ class MazeConsoler(deeding.Deed):
         '''
         console = self.console.value
         server = self.server.value
-        while True:
+        while True:  # process all pended input
             line = console.getLine()
             if not line:
                 break
             chunks = line.lower().split()
+            if not chunks:  # empty list
+                console.put("Try one of: l[eft] r[ight] w[alk] s[top]\n")
+                break
             command = None
-            if chunks[0].startswith('t'):
-                if len(chunks) == 1:
-                    value = 'right'
-                elif chunks[1].startswith('l'):
-                    value = 'left'
-                else:
-                    value = 'right'
-                command = ('turn', value)
+            verb = chunks[0]
 
-            elif chunks[0].startswith('s'):
+            if verb.startswith('r'):
+                command = ('turn', 'right')
+
+            elif verb.startswith('l'):
+                command = ('turn', 'left')
+
+            elif verb.startswith('w'):
+                command = ('walk', 1)
+
+            elif verb.startswith('s'):
                 command = ('stop', '')
 
-            elif chunks[0].startswith('w'):
-                command = ('walk', 1)
+            else:
+                console.put("Invalid command: {0}\n".format(verb))
+                console.put("Try one of: t[urn] s[top] w[alk]\n")
+                break
+
             data = json.dumps(command)
             server.send(data, ("127.0.0.1", 55000))
             console.put("Sent: {0}\n".format(command))
