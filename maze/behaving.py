@@ -153,7 +153,7 @@ def consolerclose(self):
                 head=odict(ipath="player.head", ival=0.0),
                 speed=odict(ipath="player.speed", ival=0),
                 position=odict(ipath="player.position", ival=odict(north=0.0, east=0.0)) ))
-def startmaze(self, **kwa):
+def mazestart(self, **kwa):
     '''
     Initialize player position,face, and head
     '''
