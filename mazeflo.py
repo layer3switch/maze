@@ -9,8 +9,6 @@ Runs ioflo plan from command line shell
 example:
 
 mazeflo -v verbose -n maze -p 0.0625 -f maze/maze.flo -b maze
-mazeflo -v concise -n maze -p 0.0625 -f road/raet.flo -b maze.behaving
-
 
 
 """
