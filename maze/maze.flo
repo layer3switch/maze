@@ -1,0 +1,67 @@
+# maze game demo
+
+
+
+house maze
+  init .state.exited to north false east false south false west false
+  init .maze.pose to value "north"
+  init .maze.onset to north 0.0 east 0.0
+  init .maze.player.speed to 0
+
+
+  framer commander be active
+    frame start
+      do maze commander
+      exit
+        do maze commander close
+
+  framer mazer be active at 2.0
+    frame start
+      do maze start at enter
+      go next
+
+    frame entrance
+      put north false east true south true west true into walls of frame
+      #put north 0 east 0 into offset of frame
+      do cell
+      go hall1_south if north in exited
+
+    frame hall1
+      put 5 into size of frame
+      put "north" into pose of frame
+      do corridor
+
+      go entrance if south in exited
+      go intersection1 if north in exited
+
+      frame hall1_south in hall1
+        put north 0 into offset of frame
+
+      frame hall1_north in hall1
+        put north 4 into offset of frame
+
+    frame intersection1
+      #put north true east false south false west true into walls of frame
+      #put north 0 east 0 into offset of frame
+      #do cell
+      do corner north west
+      go hall1_north if south in exited
+      go hall2_west if east in exited
+
+    frame hall2
+      put 7 into size of frame
+      put "east" into pose of frame
+      do corridor
+
+      go intersection1 if west in exited
+      go exit if east in exited
+
+      frame hall2_west in hall2
+        put east 0 into offset of frame
+
+      frame hall2_east in hall2
+        put east 6 into offset of frame
+
+    frame exit
+      print You Are Out
+      bid stop all

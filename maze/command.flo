@@ -1,0 +1,13 @@
+# maze game demo
+
+
+
+house maze
+
+  framer commander be active
+    frame start
+      do maze commander
+      exit
+        do maze commander close
+
+

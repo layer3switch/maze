@@ -1,0 +1,9 @@
+# maze game demo
+
+house maze
+  framer console be active
+    frame start
+      do maze consoler
+      exit
+        do maze consoler close
+
